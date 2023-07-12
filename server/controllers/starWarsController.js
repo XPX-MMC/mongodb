@@ -12,27 +12,23 @@ const starWarsController = {};
 
 starWarsController.getCharacters = (req, res, next) => {
 
-  // Person.find({})
-
-  //   .then((result) => res.locals = result)
-
-  //   .catch((err) => console.log(err.message));
-
-
-  // next();
-
+  models.Person.find({})
+  .exec()
+  .then(Characters => {
+    console.log(Characters);
+    res.locals = Characters;
+    next();
+  })
+  .catch(err => {
+    next(err);
+  });
 };
 
 starWarsController.getSpecies = async (req, res, next) => {
   
-  Species.find({})
+  // Species.find({})
 
-    .then((result) => res.locals = result)
-
-    .catch((err) => console.log(err.message));
-
-
-  next();
+    
  
 };
 

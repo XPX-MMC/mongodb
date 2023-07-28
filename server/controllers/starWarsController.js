@@ -1,17 +1,35 @@
 const models = require('../models/starWarsModels');
 
+const {Person, Species} = require('../models/starWarsModels');
+
+
+
+
 const starWarsController = {};
 
-starWarsController.getCharacters = (req, res, next) => {
-  // write code here
 
-  next();
+
+
+starWarsController.getCharacters = (req, res, next) => {
+
+  models.Person.find({})
+  .exec()
+  .then(Characters => {
+    console.log(Characters);
+    res.locals = Characters;
+    next();
+  })
+  .catch(err => {
+    next(err);
+  });
 };
 
-starWarsController.getSpecies = (req, res, next) => {
-  // write code here
+starWarsController.getSpecies = async (req, res, next) => {
+  
+  // Species.find({})
 
-  next();
+    
+ 
 };
 
 starWarsController.getHomeworld = (req, res, next) => {
